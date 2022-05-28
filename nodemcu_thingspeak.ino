@@ -1,5 +1,7 @@
+//--> library yang dibutuhkan
 #include <DHT.h>
 #include <ESP8266WiFi.h>
+#include "ThingSpeak.h"
 
 //--> diganti sesuai kebutuhan pin sensor
 #define DHTPIN D7
@@ -21,13 +23,14 @@ void setup(){
   Serial.begin(115200);
   delay(10);
   dht.begin();
+  ThingSpeak.begin(client);
   Serial.println("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, pass);
   while (WiFi.status() != WL_CONNECTED){
     delay(500);
     Serial.print(".");
-    }
+  }
   Serial.println("");
   Serial.println("WiFi connected");
 }
